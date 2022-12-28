@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "scapy-unit-tests"
+version = "0.1.0"
+description = "Unit test for Scapy"
+authors = ["George-Andrei Iosif <georgeiosif@live.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "scapy_unit_tests"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^7.2.0"
+scrapy = "^2.7.1"
+pytest-timeout = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+isort = "^5.11.4"
+flake8 = "^6.0.0"
+mypy = "^0.991"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
