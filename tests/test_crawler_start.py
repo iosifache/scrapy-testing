@@ -1,14 +1,22 @@
+"""Unit tests for scrapy.crawler.CrawlerProcess.start
+
+Method type: Taking time to process
+N/A criteria:
+- Inverse relationship: Not the case as the extracted links cannot be reverted
+    to the initial, crawled websites
+- Error: No exception is documented for this method.
+"""
 import pytest
 from scrapy import Spider
 from scrapy.crawler import CrawlerProcess
+from scrapy.http import Response
 from scrapy.link import Link
 
 
 class WrapperSpider(Spider):
-    name = "all_pages_spider"
     links = {}
 
-    def parse(self, response):
+    def parse(self, response: Response) -> None:
         links = response.css("a::attr(href)").extract()
 
         if self.name in WrapperSpider.links:
@@ -18,7 +26,7 @@ class WrapperSpider(Spider):
 
 
 class ThreePagesScrapper(WrapperSpider):
-    name = "three"
+    name = "lazy_three_websited"
     start_urls = [
         "https://www.smithfieldfoods.com/",
         "https://digi24.ro",
@@ -26,26 +34,20 @@ class ThreePagesScrapper(WrapperSpider):
     ]
 
 
-@pytest.fixture(scope="module", autouse=True)
-def setup_function() -> None:
-    print("executed")
-    process = CrawlerProcess()
-
-    process.crawl(ThreePagesScrapper)
-
-    process.start()
-
-
 def get_links(spider: WrapperSpider) -> list[Link]:
     return WrapperSpider.links[spider.name]
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(3)
 def test_no_link() -> None:
-    """Tests if no link is returned for an isolated page.
+    """Tests if the processing of three lazy websites does not result in a
+    timeout.
 
-    Testing principles: right, performance, cardinality of 0 elements
+    Testing principles: right, performance
     """
-    links = get_links(ThreePagesScrapper)
+    process = CrawlerProcess()
+    process.crawl(ThreePagesScrapper)
+    process.start()
 
-    print(links)
+    links = get_links(ThreePagesScrapper)
+    assert len(links) > 0, "No links were retrieved from the crawled websites."
