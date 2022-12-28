@@ -1,4 +1,4 @@
-"""Unit tests for scrapy.config.parser
+"""Unit tests for scrapy.utils.conf.get_config
 
 Method type: Processing files
 """

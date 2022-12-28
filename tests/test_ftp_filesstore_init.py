@@ -1,4 +1,4 @@
-"""Unit tests for scrapy.pipelines.file.FTPFilesStore
+"""Unit tests for scrapy.pipelines.file.FTPFilesStore's contructor
 
 Method type: Working with values within a range
 N/A criteria:

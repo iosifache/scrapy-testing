@@ -1,4 +1,5 @@
-"""Unit tests for GzipPlugin and LZMAPlugin from scrapy.extensions.postprocessing
+"""Unit tests for GzipPlugin and LZMAPlugin's write() from
+scrapy.extensions.postprocessing
 
 Methods type: Returning an integer
 """
