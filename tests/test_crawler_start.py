@@ -34,7 +34,7 @@ class ThreePagesScrapper(WrapperSpider):
     ]
 
 
-def get_links(spider: WrapperSpider) -> list[Link]:
+def __get_links(spider: WrapperSpider) -> list[Link]:
     return WrapperSpider.links[spider.name]
 
 
@@ -49,5 +49,5 @@ def test_no_link() -> None:
     process.crawl(ThreePagesScrapper)
     process.start()
 
-    links = get_links(ThreePagesScrapper)
+    links = __get_links(ThreePagesScrapper)
     assert len(links) > 0, "No links were retrieved from the crawled websites."

@@ -64,7 +64,7 @@ def check_node(node: typing.Any) -> bool:
 def test_valid_sitemap_with_many_urls() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
-    Testing principles: right, cardinality (with many elements), performance
+    Testing principles: right, cardinality with N elements, performance
     """
     sitemap = Sitemap(MANY_CONTENT)
 
@@ -81,7 +81,7 @@ def test_valid_sitemap_with_many_urls() -> None:
 def test_valid_sitemap_with_single_url() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
-    Testing principles: right, cardinality (with single element), performance
+    Testing principles: right, cardinality with 1 element, performance
     """
     sitemap = Sitemap(SINGLE_CONTENT)
 
@@ -98,7 +98,7 @@ def test_valid_sitemap_with_single_url() -> None:
 def test_empty_urlset() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
-    Testing principles: right, cardinality (with no element), performance
+    Testing principles: right, cardinality with 0 elements, performance
     """
     sitemap = Sitemap(EMPTY_CONTENT)
 

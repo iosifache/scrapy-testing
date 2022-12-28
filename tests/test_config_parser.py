@@ -74,7 +74,7 @@ def test_empty_file(
 ) -> None:
     """Tests if a valid configuration with two keys is loaded correctly.
 
-    Testing principles: right, cardinality of 0, inverse relationship,
+    Testing principles: right, cardinality of 0 elements, inverse relationship,
         performance
     Testing technique: monkey patching
     """
@@ -93,7 +93,7 @@ def test_valid_parsing_of_one_key(
 ) -> None:
     """Tests if a valid configuration with one key is loaded correctly.
 
-    Testing principles: right, cardinality of 1, inverse relationship,
+    Testing principles: right, cardinality of one element, inverse relationship,
         performance
     Testing technique: monkey patching
     """
@@ -118,7 +118,7 @@ def test_valid_parsing_of_two_keys(
 ) -> None:
     """Tests if a valid configuration with two keys is loaded correctly.
 
-    Testing principles: right, cardinality of 2, inverse relationship,
+    Testing principles: right, cardinality of N elements, inverse relationship,
         performance
     Testing technique: monkey patching
     """

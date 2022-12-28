@@ -51,7 +51,7 @@ def setup_function() -> None:
     process.start()
 
 
-def get_links(spider: WrapperSpider) -> list[Link]:
+def __get_links(spider: WrapperSpider) -> list[Link]:
     return WrapperSpider.links[spider.name]
 
 
@@ -61,7 +61,7 @@ def test_no_link() -> None:
 
     Testing principles: right, performance, cardinality of 0 elements
     """
-    links = get_links(NoLinkSpider)
+    links = __get_links(NoLinkSpider)
 
     assert len(links) == 0
 
@@ -73,7 +73,7 @@ def test_one_link() -> None:
     Testing principles: right, performance, conformance with link format,
         cardinality of 1 element
     """
-    links = get_links(SingleLinkSpider)
+    links = __get_links(SingleLinkSpider)
 
     assert len(links) == 1
     assert is_url(links[0].url)
@@ -84,9 +84,9 @@ def test_multiple_links() -> None:
     """Tests if multiple links are returned.
 
     Testing principles: right, performance, conformance with link format,
-        cardinality of N element
+        cardinality of N elements
     """
-    links = get_links(MultipleLinksSpider)
+    links = __get_links(MultipleLinksSpider)
 
     assert len(links) == 13
     for link in links:
