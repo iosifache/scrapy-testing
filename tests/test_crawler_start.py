@@ -39,7 +39,7 @@ def __get_links(spider: WrapperSpider) -> list[Link]:
 
 
 @pytest.mark.timeout(3)
-def test_no_link() -> None:
+def test_lazy_crawling() -> None:
     """Tests if the processing of three lazy websites does not result in a
     timeout.
 

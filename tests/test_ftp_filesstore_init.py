@@ -1,8 +1,6 @@
 """Unit tests for scrapy.pipelines.file.FTPFilesStore's contructor
 
 Method type: Working with values within a range
-N/A criteria:
-- Inverse relationship: Not the case
 """
 
 import pytest
@@ -21,7 +19,7 @@ def constructor_wrapper(
 def test_valid_parameters() -> None:
     """Tests if no error is raised when passing a valid connection string.
 
-    Testing principles: right, performance
+    Testing principles: right, performance, inverse relationship
     """
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     client = constructor_wrapper(schema, username, password, hostname, port)
@@ -51,8 +49,8 @@ def test_no_schema() -> None:
 
 
 @pytest.mark.timeout(1)
-def test_lower_port() -> None:
-    """Tests if no error is raised on lower limit.
+def test_lowest_port() -> None:
+    """Tests if no error is raised when using the lowest port.
 
     Testing principles: right, range (lower boundary)
     """
@@ -86,8 +84,8 @@ def test_negative_port() -> None:
 
 
 @pytest.mark.timeout(1)
-def test_overflowing_port() -> None:
-    """Tests if an error is raised on a negative value.
+def test_above_max_port() -> None:
+    """Tests if an error is when using a port exceeding the maximum valid value.
 
     Testing principles: right, error
     """

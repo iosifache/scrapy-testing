@@ -1,6 +1,6 @@
 # TODO
 
-- Return type
+- Timeout change for basic ops
 - Assert messages
 - Docs for each method
 
