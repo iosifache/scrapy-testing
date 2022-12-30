@@ -15,7 +15,7 @@ def constructor_wrapper(
     return FTPFilesStore(f"{schema}{username}:{password}@{hostname}:{port}")
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_parameters() -> None:
     """Tests if no error is raised when passing a valid connection string.
 
@@ -31,7 +31,7 @@ def test_valid_parameters() -> None:
     assert client.port == port
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_no_schema() -> None:
     """Tests if an error is raised when no schema is provided.
 
@@ -48,7 +48,7 @@ def test_no_schema() -> None:
         assert False
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_lowest_port() -> None:
     """Tests if no error is raised when using the lowest port.
 
@@ -66,7 +66,7 @@ def test_lowest_port() -> None:
     assert client.port == port
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_negative_port() -> None:
     """Tests if an error is raised on a negative value.
 
@@ -83,7 +83,7 @@ def test_negative_port() -> None:
         assert False
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_above_max_port() -> None:
     """Tests if an error is when using a port exceeding the maximum valid value.
 

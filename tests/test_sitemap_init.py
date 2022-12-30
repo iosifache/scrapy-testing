@@ -72,7 +72,7 @@ def __check_root(root: typing.Any) -> bool:
     return isinstance(root, _Element)
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_empty_urlset() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
@@ -85,7 +85,7 @@ def test_empty_urlset() -> None:
     assert __check_root(sitemap._root)
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_single_url() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
@@ -98,7 +98,7 @@ def test_valid_sitemap_with_single_url() -> None:
     assert __check_root(sitemap._root)
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_many_urls() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
@@ -111,7 +111,7 @@ def test_valid_sitemap_with_many_urls() -> None:
     assert __check_root(sitemap._root)
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_empty_parsing() -> None:
     """Tests if an error is raised when giving an empty string.
 
@@ -125,7 +125,7 @@ def test_empty_parsing() -> None:
         assert False
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_invalid_parsing() -> None:
     """Tests if no error is raised when passing an invalid XML string.
 

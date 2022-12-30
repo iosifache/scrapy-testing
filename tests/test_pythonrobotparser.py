@@ -18,7 +18,7 @@ Disallow:
 """
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_robots() -> None:
     """Tests if a valid file is parsed correctly.
 
@@ -30,7 +30,7 @@ def test_valid_robots() -> None:
     assert not robot.allowed("/", "YandexBot")
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_empty_file() -> None:
     """Tests if no error is raised when giving an empty file.
 
@@ -44,7 +44,7 @@ def test_empty_file() -> None:
     assert robot.allowed("/", "YandexBot")
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_no_DUMMY_ROBOTSTXT_at_all() -> None:
     """Tests if an error is raised when giving a None.
 

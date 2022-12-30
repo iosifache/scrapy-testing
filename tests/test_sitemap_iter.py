@@ -60,7 +60,7 @@ def __check_node(node: typing.Any) -> bool:
     return isinstance(node, dict) and "loc" in node.keys()
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_empty_urlset() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
@@ -75,7 +75,7 @@ def test_empty_urlset() -> None:
     assert nodes_count == 0
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_single_url() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
@@ -93,7 +93,7 @@ def test_valid_sitemap_with_single_url() -> None:
     assert nodes_count == 1
 
 
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_many_urls() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
