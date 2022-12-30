@@ -1,6 +1,7 @@
 """Unit tests for scrapy.utils.sitemap.Sitemap.__iter__
 
-Method type: Using methods from other classes (lxml.etree.XMLParser.getchildren)
+Method type: Using methods from other classes
+    (lxml.etree.XMLParser.getchildren)
 N/A criteria:
 - Inverse relationship: No method is exposed to return the initial sitemap
     tree.

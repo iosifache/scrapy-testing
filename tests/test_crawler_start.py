@@ -6,6 +6,8 @@ N/A criteria:
     to the initial, crawled websites
 - Error: No exception is documented for this method.
 """
+import typing
+
 import pytest
 from scrapy import Spider
 from scrapy.crawler import CrawlerProcess
@@ -15,7 +17,7 @@ from scrapy.utils.reactor import install_reactor
 
 
 class WrapperSpider(Spider):
-    links = {}
+    links: dict[str, list] = {}
 
     def parse(self, response: Response) -> None:
         links = response.css("a::attr(href)").extract()
@@ -35,8 +37,11 @@ class ThreePagesScrapper(WrapperSpider):
     ]
 
 
-def __get_links(spider: WrapperSpider) -> list[Link]:
-    return WrapperSpider.links[spider.name]
+def __get_links(spider: typing.Type[ThreePagesScrapper]) -> list[Link]:
+    if spider.name:
+        return WrapperSpider.links[spider.name]
+
+    return []
 
 
 @pytest.mark.timeout(3)

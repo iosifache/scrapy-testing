@@ -6,7 +6,13 @@ Method type: Working with values within a range
 import pytest
 from scrapy.pipelines.files import FTPFilesStore
 
-VALID_CONNECTION_PARAMETERS = ("ftp://", "demo", "password", "test.rebex.net", 22)
+VALID_CONNECTION_PARAMETERS = (
+    "ftp://",
+    "demo",
+    "password",
+    "test.rebex.net",
+    22,
+)
 
 
 def constructor_wrapper(
@@ -80,12 +86,14 @@ def test_negative_port() -> None:
     except ValueError:
         pass
     else:
-        assert False, "No error was raised when offering a negative value as port."
+        assert (
+            False
+        ), "No error was raised when offering a negative value as port."
 
 
 @pytest.mark.timeout(0.1)
 def test_above_max_port() -> None:
-    """Tests if an error is when using a port exceeding the maximum valid value.
+    """Tests if an error is when using a port exceeding the maximum value.
 
     Testing principles: right, error
     """
@@ -97,6 +105,7 @@ def test_above_max_port() -> None:
     except ValueError:
         pass
     else:
-        assert (
-            False
-        ), "No exception was raised when offering a port exceeding the maximum allowed one."
+        assert False, (
+            "No exception was raised when offering a port exceeding the"
+            " maximum allowed one."
+        )

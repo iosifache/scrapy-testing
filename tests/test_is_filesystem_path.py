@@ -46,7 +46,9 @@ def test_working_directory() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("./."), "The working folder is not recognized as valid."
+    assert _is_posix_path(
+        "./."
+    ), "The working folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -55,7 +57,9 @@ def test_parent_directory() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("../."), "The parent folder is not recognized as valid."
+    assert _is_posix_path(
+        "../."
+    ), "The parent folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)

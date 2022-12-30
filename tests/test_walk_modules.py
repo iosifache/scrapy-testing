@@ -23,7 +23,9 @@ def test_zero_submodules() -> None:
     """
     modules = walk_modules("modules.zero")
 
-    assert len(modules) - 1 == 0, "The lack of submodules was not correctly reported."
+    assert (
+        len(modules) - 1 == 0
+    ), "The lack of submodules was not correctly reported."
 
 
 @pytest.mark.timeout(0.1)

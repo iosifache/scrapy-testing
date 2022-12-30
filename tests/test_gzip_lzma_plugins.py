@@ -91,7 +91,9 @@ def test_gzip_zero_length() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = gzip_wrapper(temp.name, data)
-        assert return_code == 0, "GZIP size is non-0, despite the empty content."
+        assert (
+            return_code == 0
+        ), "GZIP size is non-0, despite the empty content."
 
 
 @pytest.mark.timeout(0.1)
@@ -104,7 +106,9 @@ def test_lzma_zero_length() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = lzma_wrapper(temp.name, data)
-        assert return_code == 0, "LZMA size is non-0, despite the empty content."
+        assert (
+            return_code == 0
+        ), "LZMA size is non-0, despite the empty content."
 
 
 @pytest.mark.timeout(0.1)
@@ -119,7 +123,9 @@ def test_gzip_inexistent_file() -> None:
     except Exception:
         pass
     else:
-        assert False, "No exception was raised when processing an inexistent GZIP file."
+        assert (
+            False
+        ), "No exception was raised when processing an inexistent GZIP file."
 
 
 @pytest.mark.timeout(0.1)
@@ -134,4 +140,6 @@ def test_lzma_inexistent_file() -> None:
     except Exception:
         pass
     else:
-        assert False, "No exception was raised when processing an inexistent LZMA file."
+        assert (
+            False
+        ), "No exception was raised when processing an inexistent LZMA file."

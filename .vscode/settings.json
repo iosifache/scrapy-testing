@@ -1,13 +1,26 @@
 {
-    "python.formatting.blackPath": ".venv/bin/black",
-    "python.linting.flake8Path": ".venv/bin/flake8",
-    "python.linting.mypyPath": ".venv/bin/mypy",
+    /* Black */
     "python.formatting.provider": "black",
+    "python.formatting.blackPath": ".venv/bin/black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "79",
+        "--preview"
+    ],
+    /* Flake8 */
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": ".venv/bin/flake8",
+    /* MyPy */
+    "python.linting.mypyEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.mypyPath": ".venv/bin/mypy",
+    /* Isort */
     "isort.path": [
         ".venv/bin/isort"
     ],
+    /* Automatic actions */
     "editor.formatOnSave": true,
-    "python.linting.enabled": true,
     "python.linting.lintOnSave": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": true

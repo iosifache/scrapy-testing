@@ -57,7 +57,9 @@ def __mock_get_sources_with_erroneous_file(_: bool) -> list[str]:
     return [temp.name]
 
 
-def __check_dumped_content(config: ConfigParser, original_content: str) -> bool:
+def __check_dumped_content(
+    config: ConfigParser, original_content: str
+) -> bool:
     temp = tempfile.TemporaryFile(mode="w+")
     config.write(temp)
     temp.flush()
@@ -79,12 +81,15 @@ def test_empty_file(
     Testing technique: monkey patching
     """
     monkeypatch.setattr(
-        "scrapy.utils.conf.get_sources", __mock_get_sources_with_inexistent_config
+        "scrapy.utils.conf.get_sources",
+        __mock_get_sources_with_inexistent_config,
     )
 
     config = get_config()
     assert config, "The inexistent configuration was not loaded at all."
-    assert config.sections() == [], "The inexistent configuration was misrepresented."
+    assert (
+        config.sections() == []
+    ), "The inexistent configuration was misrepresented."
 
 
 @pytest.mark.timeout(0.1)
@@ -93,12 +98,13 @@ def test_valid_parsing_of_one_key(
 ) -> None:
     """Tests if a valid configuration with one key is loaded correctly.
 
-    Testing principles: right, cardinality of one element, inverse relationship,
-        performance
+    Testing principles: right, cardinality of one element, inverse
+        relationship, performance
     Testing technique: monkey patching
     """
     monkeypatch.setattr(
-        "scrapy.utils.conf.get_sources", __mock_get_sources_with_valid_one_key_config
+        "scrapy.utils.conf.get_sources",
+        __mock_get_sources_with_valid_one_key_config,
     )
 
     config = get_config()
@@ -107,9 +113,10 @@ def test_valid_parsing_of_one_key(
         config["simple"]["key"] == "value"
     ), "A value from the configuration was wrongly loaded."
 
-    assert __check_dumped_content(
-        config, ONE_KEY_CONFIG
-    ), "The dumped configuration is different than the original one, with one key."
+    assert __check_dumped_content(config, ONE_KEY_CONFIG), (
+        "The dumped configuration is different than the "
+        "original one, with one key."
+    )
 
 
 @pytest.mark.timeout(0.1)
@@ -123,7 +130,8 @@ def test_valid_parsing_of_two_keys(
     Testing technique: monkey patching
     """
     monkeypatch.setattr(
-        "scrapy.utils.conf.get_sources", __mock_get_sources_with_valid_two_keys_config
+        "scrapy.utils.conf.get_sources",
+        __mock_get_sources_with_valid_two_keys_config,
     )
 
     config = get_config()
@@ -133,9 +141,10 @@ def test_valid_parsing_of_two_keys(
         and config["simple"]["new_key"] == "new_value"
     ), "A value from the configuration was wrongly loaded."
 
-    assert __check_dumped_content(
-        config, TWO_KEYS_CONFIG
-    ), "The dumped configuration is different than the original one, with two key."
+    assert __check_dumped_content(config, TWO_KEYS_CONFIG), (
+        "The dumped configuration is different than "
+        "the original one, with two key."
+    )
 
 
 @pytest.mark.timeout(0.1)
@@ -153,7 +162,9 @@ def test_no_file(
 
     config = get_config()
     assert config, "The empty configuration was not loaded at all."
-    assert config.sections() == [], "The empty configuration was misrepresented."
+    assert (
+        config.sections() == []
+    ), "The empty configuration was misrepresented."
 
 
 @pytest.mark.timeout(0.1)
@@ -174,6 +185,7 @@ def test_file_with_errors(
     except ParsingError:
         pass
     else:
-        assert (
-            False
-        ), "No exception was raised when parsing a configuration file containing errors."
+        assert False, (
+            "No exception was raised when parsing a configuration file"
+            " containing errors."
+        )

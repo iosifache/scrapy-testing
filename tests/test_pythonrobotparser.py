@@ -27,8 +27,12 @@ def test_valid_robots() -> None:
     robot = PythonRobotParser(DUMMY_ROBOTSTXT, None)
 
     assert robot, "No parser was created."
-    assert robot.allowed("/", "Googlebot"), "Googlebot is not allowed to crawl."
-    assert not robot.allowed("/", "YandexBot"), "YandexBot is allowed to crawl."
+    assert robot.allowed(
+        "/", "Googlebot"
+    ), "Googlebot is not allowed to crawl."
+    assert not robot.allowed(
+        "/", "YandexBot"
+    ), "YandexBot is allowed to crawl."
 
 
 @pytest.mark.timeout(0.1)
@@ -40,8 +44,12 @@ def test_empty_file() -> None:
     robot = PythonRobotParser("", None)
 
     assert robot, "No parser was created."
-    assert robot.allowed("/", "Googlebot"), "Googlebot is not allowed to crawl."
-    assert robot.allowed("/", "YandexBot"), "YandexBot is not allowed to crawl."
+    assert robot.allowed(
+        "/", "Googlebot"
+    ), "Googlebot is not allowed to crawl."
+    assert robot.allowed(
+        "/", "YandexBot"
+    ), "YandexBot is not allowed to crawl."
 
 
 @pytest.mark.timeout(0.1)
