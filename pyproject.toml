@@ -12,6 +12,7 @@ python = "^3.11"
 pytest = "^7.2.0"
 scrapy = "^2.7.1"
 pytest-timeout = "^2.1.0"
+flake8-assert-msg = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"

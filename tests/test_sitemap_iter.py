@@ -72,7 +72,7 @@ def test_empty_urlset() -> None:
     for _ in sitemap:
         nodes_count += 1
 
-    assert nodes_count == 0
+    assert nodes_count == 0, "Nodes were returned despite the empty sitemap."
 
 
 @pytest.mark.timeout(0.1)
@@ -86,11 +86,11 @@ def test_valid_sitemap_with_single_url() -> None:
 
     nodes_count = 0
     for elem in sitemap:
-        assert __check_node(elem)
+        assert __check_node(elem), "Invalid sitemap element was returned."
 
         nodes_count += 1
 
-    assert nodes_count == 1
+    assert nodes_count == 1, "Invalid number of sitemap elements"
 
 
 @pytest.mark.timeout(0.1)
@@ -104,8 +104,8 @@ def test_valid_sitemap_with_many_urls() -> None:
 
     nodes_count = 0
     for elem in sitemap:
-        assert __check_node(elem)
+        assert __check_node(elem), "Invalid sitemap element was returned."
 
         nodes_count += 1
 
-    assert nodes_count == 5
+    assert nodes_count == 5, "Invalid number of sitemap elements"

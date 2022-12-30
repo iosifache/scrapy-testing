@@ -24,11 +24,11 @@ def test_valid_parameters() -> None:
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     client = constructor_wrapper(schema, username, password, hostname, port)
 
-    assert client
-    assert client.username == username
-    assert client.password == password
-    assert client.host == hostname
-    assert client.port == port
+    assert client, "The contructor returned None."
+    assert client.username == username, "The username is invalid."
+    assert client.password == password, "The password is invalid."
+    assert client.host == hostname, "The hostname is invalid."
+    assert client.port == port, "The post is invalid."
 
 
 @pytest.mark.timeout(0.1)
@@ -45,7 +45,7 @@ def test_no_schema() -> None:
     except ValueError:
         pass
     else:
-        assert False
+        assert False, "No error was raised when ommiting schema."
 
 
 @pytest.mark.timeout(0.1)
@@ -59,11 +59,11 @@ def test_lowest_port() -> None:
 
     client = constructor_wrapper(schema, username, password, hostname, port)
 
-    assert client
-    assert client.username == username
-    assert client.password == password
-    assert client.host == hostname
-    assert client.port == port
+    assert client, "The contructor returned None."
+    assert client.username == username, "The username is invalid."
+    assert client.password == password, "The password is invalid."
+    assert client.host == hostname, "The hostname is invalid."
+    assert client.port == port, "The post is invalid."
 
 
 @pytest.mark.timeout(0.1)
@@ -80,7 +80,7 @@ def test_negative_port() -> None:
     except ValueError:
         pass
     else:
-        assert False
+        assert False, "No error was raised when offering a negative value as port."
 
 
 @pytest.mark.timeout(0.1)
@@ -97,4 +97,6 @@ def test_above_max_port() -> None:
     except ValueError:
         pass
     else:
-        assert False
+        assert (
+            False
+        ), "No exception was raised when offering a port exceeding the maximum allowed one."

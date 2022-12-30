@@ -55,10 +55,12 @@ def test_gzip_valid_content() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = gzip_wrapper(temp.name, data)
-        assert return_code != 0
+        assert return_code != 0, "The written size for GZIP is zero."
 
         uncompressed_content = ungzip(temp.name)
-        assert data == uncompressed_content
+        assert (
+            data == uncompressed_content
+        ), "The written data for GZIP is different from the original one."
 
 
 @pytest.mark.timeout(0.1)
@@ -71,10 +73,12 @@ def test_lzma_valid_content() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = lzma_wrapper(temp.name, data)
-        assert return_code != 0
+        assert return_code != 0, "The written size for LZMA is zero."
 
         uncompressed_content = unlzma(temp.name)
-        assert data == uncompressed_content
+        assert (
+            data == uncompressed_content
+        ), "The written data for LZMA is different from the original one."
 
 
 @pytest.mark.timeout(0.1)
@@ -87,7 +91,7 @@ def test_gzip_zero_length() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = gzip_wrapper(temp.name, data)
-        assert return_code == 0
+        assert return_code == 0, "GZIP size is non-0, despite the empty content."
 
 
 @pytest.mark.timeout(0.1)
@@ -100,7 +104,7 @@ def test_lzma_zero_length() -> None:
 
     with tempfile.NamedTemporaryFile("wb", delete=False) as temp:
         return_code = lzma_wrapper(temp.name, data)
-        assert return_code == 0
+        assert return_code == 0, "LZMA size is non-0, despite the empty content."
 
 
 @pytest.mark.timeout(0.1)
@@ -115,7 +119,7 @@ def test_gzip_inexistent_file() -> None:
     except Exception:
         pass
     else:
-        assert False
+        assert False, "No exception was raised when processing an inexistent GZIP file."
 
 
 @pytest.mark.timeout(0.1)
@@ -130,4 +134,4 @@ def test_lzma_inexistent_file() -> None:
     except Exception:
         pass
     else:
-        assert False
+        assert False, "No exception was raised when processing an inexistent LZMA file."

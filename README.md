@@ -1,8 +1,23 @@
-# TODO
+# Scripts 🦿
+
+## Description 🖼️
+
+This repository holds miscellaneous **quick and dirty scripts**.
+
+## Folders Structure 📁
+
+Each folder contains the following components:
+- Some scripts
+- Requirements
+- Documentation
+- Usage examples.
+
+
 
 - Timeout change for basic ops
 - Assert messages
 - Docs for each method
+- 64 asserts with sugestive messages
 
 # Principles
 

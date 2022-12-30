@@ -26,8 +26,9 @@ def test_valid_robots() -> None:
     """
     robot = PythonRobotParser(DUMMY_ROBOTSTXT, None)
 
-    assert robot.allowed("/", "Googlebot")
-    assert not robot.allowed("/", "YandexBot")
+    assert robot, "No parser was created."
+    assert robot.allowed("/", "Googlebot"), "Googlebot is not allowed to crawl."
+    assert not robot.allowed("/", "YandexBot"), "YandexBot is allowed to crawl."
 
 
 @pytest.mark.timeout(0.1)
@@ -38,10 +39,9 @@ def test_empty_file() -> None:
     """
     robot = PythonRobotParser("", None)
 
-    assert robot
-
-    assert robot.allowed("/", "Googlebot")
-    assert robot.allowed("/", "YandexBot")
+    assert robot, "No parser was created."
+    assert robot.allowed("/", "Googlebot"), "Googlebot is not allowed to crawl."
+    assert robot.allowed("/", "YandexBot"), "YandexBot is not allowed to crawl."
 
 
 @pytest.mark.timeout(0.1)
@@ -55,4 +55,4 @@ def test_no_DUMMY_ROBOTSTXT_at_all() -> None:
     except TypeError:
         pass
     else:
-        assert False
+        assert False, "No error is raised when parsing a None."

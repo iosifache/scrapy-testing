@@ -17,7 +17,9 @@ def test_valid_file() -> None:
 
     Testing principles: right, performance
     """
-    assert _is_posix_path("/home/iosifache/unit/test.py")
+    assert _is_posix_path(
+        "/home/iosifache/unit/test.py"
+    ), "A valid folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -26,7 +28,7 @@ def test_root() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("/.")
+    assert _is_posix_path("/."), "The root folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -35,7 +37,7 @@ def test_home() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("~/.")
+    assert _is_posix_path("~/."), "The home folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -44,7 +46,7 @@ def test_working_directory() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("./.")
+    assert _is_posix_path("./."), "The working folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -53,7 +55,7 @@ def test_parent_directory() -> None:
 
     Testing principles: right, performance, range (with lower limit)
     """
-    assert _is_posix_path("../.")
+    assert _is_posix_path("../."), "The parent folder is not recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -62,7 +64,9 @@ def test_windows_path() -> None:
 
     Testing principles: right, performance, conformance
     """
-    assert not _is_posix_path("C:\\Users\\iosifache")
+    assert not _is_posix_path(
+        "C:\\Users\\iosifache"
+    ), "A Windows path is recognized as valid."
 
 
 @pytest.mark.timeout(0.1)
@@ -71,4 +75,4 @@ def test_null_path() -> None:
 
     Testing principles: right, performance, existence
     """
-    assert not _is_posix_path("")
+    assert not _is_posix_path(""), "An empty path is recognized as valid."

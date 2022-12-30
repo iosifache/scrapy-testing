@@ -81,8 +81,8 @@ def test_empty_urlset() -> None:
     """
     sitemap = Sitemap(EMPTY_URLSET_SITEMAP)
 
-    assert sitemap.type == "urlset"
-    assert __check_root(sitemap._root)
+    assert sitemap.type == "urlset", "The sitemap's type is invalid."
+    assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
 @pytest.mark.timeout(0.1)
@@ -94,8 +94,8 @@ def test_valid_sitemap_with_single_url() -> None:
     """
     sitemap = Sitemap(SITEMAP_WITH_ONE_LINK)
 
-    assert sitemap.type == "urlset"
-    assert __check_root(sitemap._root)
+    assert sitemap.type == "urlset", "The sitemap's type is invalid."
+    assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
 @pytest.mark.timeout(0.1)
@@ -107,8 +107,8 @@ def test_valid_sitemap_with_many_urls() -> None:
     """
     sitemap = Sitemap(SITEMAP_WITH_MULTIPLE_LINK)
 
-    assert sitemap.type == "urlset"
-    assert __check_root(sitemap._root)
+    assert sitemap.type == "urlset", "The sitemap's type is invalid."
+    assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
 @pytest.mark.timeout(0.1)
@@ -122,7 +122,7 @@ def test_empty_parsing() -> None:
     except XMLSyntaxError:
         pass
     else:
-        assert False
+        assert False, "No error is raised when giving an empty string."
 
 
 @pytest.mark.timeout(0.1)
@@ -133,5 +133,5 @@ def test_invalid_parsing() -> None:
     """
     sitemap = Sitemap(INVALID_CONTENT)
 
-    assert sitemap.type == "urlset"
-    assert __check_root(sitemap._root)
+    assert sitemap.type == "urlset", "The sitemap's type is invalid."
+    assert __check_root(sitemap._root), "The sitemap's root is invalid."
