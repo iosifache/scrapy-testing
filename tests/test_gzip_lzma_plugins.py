@@ -37,17 +37,17 @@ def lzma_wrapper(filename: str, data: bytes) -> int:
         return return_code
 
 
-def gzip_inverse(filename: str) -> bytes:
+def ungzip(filename: str) -> bytes:
     return gzip.open(filename).read()
 
 
-def lzma_inverse(filename: str) -> bytes:
+def unlzma(filename: str) -> bytes:
     return lzma.open(filename).read()
 
 
 @pytest.mark.timeout(1)
 def test_gzip_valid_content() -> None:
-    """Tests if content is written correctly into the GZIP file.
+    """Tests if the content is written correctly into the GZIP file.
 
     Testing principles: right, performance, inverse relationship
     """
@@ -57,13 +57,13 @@ def test_gzip_valid_content() -> None:
         return_code = gzip_wrapper(temp.name, data)
         assert return_code != 0
 
-        uncompressed_content = gzip_inverse(temp.name)
+        uncompressed_content = ungzip(temp.name)
         assert data == uncompressed_content
 
 
 @pytest.mark.timeout(1)
 def test_lzma_valid_content() -> None:
-    """Tests if content is written correctly into the LZMA file.
+    """Tests if the content is written correctly into the LZMA file.
 
     Testing principles: right, performance, inverse relationship
     """
@@ -73,13 +73,13 @@ def test_lzma_valid_content() -> None:
         return_code = lzma_wrapper(temp.name, data)
         assert return_code != 0
 
-        uncompressed_content = lzma_inverse(temp.name)
+        uncompressed_content = unlzma(temp.name)
         assert data == uncompressed_content
 
 
 @pytest.mark.timeout(1)
 def test_gzip_zero_length() -> None:
-    """Tests if length 0 is returned when passing empty input to GZIP.
+    """Tests if length 0 is returned when passing an empty input to GZIP.
 
     Testing principles: right, performance, range
     """
@@ -92,7 +92,7 @@ def test_gzip_zero_length() -> None:
 
 @pytest.mark.timeout(1)
 def test_lzma_zero_length() -> None:
-    """Tests if length 0 is returned when passing empty input to LZMA.
+    """Tests if length 0 is returned when passing an empty input to LZMA.
 
     Testing principles: right, performance, range
     """
@@ -105,7 +105,7 @@ def test_lzma_zero_length() -> None:
 
 @pytest.mark.timeout(1)
 def test_gzip_inexistent_file() -> None:
-    """Tests if generic exception is raised when passing an inexistent file
+    """Tests if an generic exception is raised when passing an inexistent file
         to GZIP.
 
     Testing principles: performance, existence
@@ -120,7 +120,7 @@ def test_gzip_inexistent_file() -> None:
 
 @pytest.mark.timeout(1)
 def test_lzma_inexistent_file() -> None:
-    """Tests if generic exception is raised when passing an inexistent file
+    """Tests if an generic exception is raised when passing an inexistent file
         to LZMA.
 
     Testing principles: performance, existence
