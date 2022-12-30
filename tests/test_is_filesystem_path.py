@@ -3,7 +3,7 @@
 Method type: Checking if a string has a correct format
 N/A criteria:
 - Inverse relationship: Not the case as the initial path can't be extracted
-    from the resulted boolean.
+    from the resulted boolean
 - Error: No exception is documented for this method.
 """
 

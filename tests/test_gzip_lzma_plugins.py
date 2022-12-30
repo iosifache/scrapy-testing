@@ -81,7 +81,7 @@ def test_lzma_valid_content() -> None:
 def test_gzip_zero_length() -> None:
     """Tests if length 0 is returned when passing an empty input to GZIP.
 
-    Testing principles: right, performance, range
+    Testing principles: right, performance, range (with lower limit)
     """
     data = b""
 
@@ -94,7 +94,7 @@ def test_gzip_zero_length() -> None:
 def test_lzma_zero_length() -> None:
     """Tests if length 0 is returned when passing an empty input to LZMA.
 
-    Testing principles: right, performance, range
+    Testing principles: right, performance, range (with lower limit)
     """
     data = b""
 

@@ -52,7 +52,7 @@ def test_no_schema() -> None:
 def test_lowest_port() -> None:
     """Tests if no error is raised when using the lowest port.
 
-    Testing principles: right, range (lower boundary)
+    Testing principles: right, range (with lower limit)
     """
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     port = 1

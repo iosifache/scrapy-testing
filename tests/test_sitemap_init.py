@@ -13,7 +13,24 @@ import pytest
 from lxml.etree import XMLSyntaxError, _Element
 from scrapy.utils.sitemap import Sitemap
 
-MANY_CONTENT = """
+EMPTY_STRING = ""
+
+EMPTY_URLSET_SITEMAP = """
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>
+"""
+
+SITEMAP_WITH_ONE_LINK = """
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://www.google.com/</loc>
+<priority>0.9</priority>
+</url>
+</urlset>"""
+
+SITEMAP_WITH_MULTIPLE_LINK = """
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
@@ -42,22 +59,6 @@ MANY_CONTENT = """
 </url>
 </urlset>"""
 
-SINGLE_CONTENT = """
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>http://www.google.com/</loc>
-<priority>0.9</priority>
-</url>
-</urlset>"""
-
-EMPTY_CONTENT = """
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</urlset>
-"""
-
-EMPTY_STRING = ""
 
 INVALID_CONTENT = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -67,49 +68,52 @@ INVALID_CONTENT = """
 """
 
 
-def check_root(root: typing.Any) -> bool:
+def __check_root(root: typing.Any) -> bool:
     return isinstance(root, _Element)
-
-
-@pytest.mark.timeout(1)
-def test_valid_sitemap_with_many_urls() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality of N elements, performance
-    """
-    sitemap = Sitemap(MANY_CONTENT)
-
-    assert sitemap.type == "urlset"
-    assert check_root(sitemap._root)
-
-
-@pytest.mark.timeout(1)
-def test_valid_sitemap_with_single_url() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 1 element, performance
-    """
-    sitemap = Sitemap(SINGLE_CONTENT)
-
-    assert sitemap.type == "urlset"
-    assert check_root(sitemap._root)
 
 
 @pytest.mark.timeout(1)
 def test_empty_urlset() -> None:
     """Tests if a sitemap with multiple URLs is parsed correctly.
 
-    Testing principles: right, cardinality with 0 elements, performance
+    Testing principles: right, cardinality with 0 elements, performance,
+        conformance
     """
-    sitemap = Sitemap(EMPTY_CONTENT)
+    sitemap = Sitemap(EMPTY_URLSET_SITEMAP)
 
     assert sitemap.type == "urlset"
-    assert check_root(sitemap._root)
+    assert __check_root(sitemap._root)
+
+
+@pytest.mark.timeout(1)
+def test_valid_sitemap_with_single_url() -> None:
+    """Tests if a sitemap with multiple URLs is parsed correctly.
+
+    Testing principles: right, cardinality with 1 element, performance,
+        conformance
+    """
+    sitemap = Sitemap(SITEMAP_WITH_ONE_LINK)
+
+    assert sitemap.type == "urlset"
+    assert __check_root(sitemap._root)
+
+
+@pytest.mark.timeout(1)
+def test_valid_sitemap_with_many_urls() -> None:
+    """Tests if a sitemap with multiple URLs is parsed correctly.
+
+    Testing principles: right, cardinality of N elements, performance,
+        conformance
+    """
+    sitemap = Sitemap(SITEMAP_WITH_MULTIPLE_LINK)
+
+    assert sitemap.type == "urlset"
+    assert __check_root(sitemap._root)
 
 
 @pytest.mark.timeout(1)
 def test_empty_parsing() -> None:
-    """Tests if an error is raised when
+    """Tests if an error is raised when giving an empty string.
 
     Testing principles: right, error, performance
     """
@@ -125,9 +129,9 @@ def test_empty_parsing() -> None:
 def test_invalid_parsing() -> None:
     """Tests if no error is raised when passing an invalid XML string.
 
-    Testing principles: right, boundary, performance
+    Testing principles: right, boundary, performance, conformance
     """
     sitemap = Sitemap(INVALID_CONTENT)
 
     assert sitemap.type == "urlset"
-    assert check_root(sitemap._root)
+    assert __check_root(sitemap._root)

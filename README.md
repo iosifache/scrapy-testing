@@ -32,5 +32,6 @@
 
 ---
 
-N tests
+- 40 tests that are passing
 each test has its own principles an techniques of unit testing
+- PYTHONPATH="tests/" .venv/bin/pytest tests/

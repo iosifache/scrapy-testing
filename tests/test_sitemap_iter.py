@@ -11,7 +11,22 @@ import typing
 import pytest
 from scrapy.utils.sitemap import Sitemap
 
-MANY_CONTENT = """
+EMPTY_URLSET_SITEMAP = """
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>
+"""
+
+SITEMAP_WITH_ONE_LINK = """
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://www.google.com/</loc>
+<priority>0.9</priority>
+</url>
+</urlset>"""
+
+SITEMAP_WITH_MULTIPLE_LINK = """
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
@@ -40,58 +55,9 @@ MANY_CONTENT = """
 </url>
 </urlset>"""
 
-SINGLE_CONTENT = """
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>http://www.google.com/</loc>
-<priority>0.9</priority>
-</url>
-</urlset>"""
 
-EMPTY_CONTENT = """
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</urlset>
-"""
-
-
-def check_node(node: typing.Any) -> bool:
+def __check_node(node: typing.Any) -> bool:
     return isinstance(node, dict) and "loc" in node.keys()
-
-
-@pytest.mark.timeout(1)
-def test_valid_sitemap_with_many_urls() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with N elements, performance
-    """
-    sitemap = Sitemap(MANY_CONTENT)
-
-    nodes_count = 0
-    for elem in sitemap:
-        assert check_node(elem)
-
-        nodes_count += 1
-
-    assert nodes_count == 5
-
-
-@pytest.mark.timeout(1)
-def test_valid_sitemap_with_single_url() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 1 element, performance
-    """
-    sitemap = Sitemap(SINGLE_CONTENT)
-
-    nodes_count = 0
-    for elem in sitemap:
-        assert check_node(elem)
-
-        nodes_count += 1
-
-    assert nodes_count == 1
 
 
 @pytest.mark.timeout(1)
@@ -100,10 +66,46 @@ def test_empty_urlset() -> None:
 
     Testing principles: right, cardinality with 0 elements, performance
     """
-    sitemap = Sitemap(EMPTY_CONTENT)
+    sitemap = Sitemap(EMPTY_URLSET_SITEMAP)
 
     nodes_count = 0
     for _ in sitemap:
         nodes_count += 1
 
     assert nodes_count == 0
+
+
+@pytest.mark.timeout(1)
+def test_valid_sitemap_with_single_url() -> None:
+    """Tests if a sitemap with multiple URLs is parsed correctly.
+
+    Testing principles: right, cardinality with 1 element, performance,
+        conformance
+    """
+    sitemap = Sitemap(SITEMAP_WITH_ONE_LINK)
+
+    nodes_count = 0
+    for elem in sitemap:
+        assert __check_node(elem)
+
+        nodes_count += 1
+
+    assert nodes_count == 1
+
+
+@pytest.mark.timeout(1)
+def test_valid_sitemap_with_many_urls() -> None:
+    """Tests if a sitemap with multiple URLs is parsed correctly.
+
+    Testing principles: right, cardinality with N elements, performance,
+        conformance
+    """
+    sitemap = Sitemap(SITEMAP_WITH_MULTIPLE_LINK)
+
+    nodes_count = 0
+    for elem in sitemap:
+        assert __check_node(elem)
+
+        nodes_count += 1
+
+    assert nodes_count == 5

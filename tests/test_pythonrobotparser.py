@@ -9,7 +9,7 @@ N/A criteria:
 import pytest
 from scrapy.robotstxt import PythonRobotParser
 
-CONTENT = """
+DUMMY_ROBOTSTXT = """
 User-agent: *
 Disallow: /
 
@@ -20,11 +20,11 @@ Disallow:
 
 @pytest.mark.timeout(1)
 def test_valid_robots() -> None:
-    """Tests if valid file is parsed correctly.
+    """Tests if a valid file is parsed correctly.
 
     Testing principles: right, error, performance
     """
-    robot = PythonRobotParser(CONTENT, None)
+    robot = PythonRobotParser(DUMMY_ROBOTSTXT, None)
 
     assert robot.allowed("/", "Googlebot")
     assert not robot.allowed("/", "YandexBot")
@@ -45,8 +45,8 @@ def test_empty_file() -> None:
 
 
 @pytest.mark.timeout(1)
-def test_no_content_at_all() -> None:
-    """Tests if an error is raised when giving a None content.
+def test_no_DUMMY_ROBOTSTXT_at_all() -> None:
+    """Tests if an error is raised when giving a None.
 
     Testing principles: right, error, performance
     """

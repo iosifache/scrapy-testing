@@ -11,6 +11,7 @@ from scrapy import Spider
 from scrapy.crawler import CrawlerProcess
 from scrapy.http import Response
 from scrapy.link import Link
+from scrapy.utils.reactor import install_reactor
 
 
 class WrapperSpider(Spider):
@@ -45,6 +46,7 @@ def test_lazy_crawling() -> None:
 
     Testing principles: right, performance
     """
+    install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
     process = CrawlerProcess()
     process.crawl(ThreePagesScrapper)
     process.start()
