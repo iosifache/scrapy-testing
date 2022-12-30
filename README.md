@@ -1,52 +1,42 @@
-# Scripts 🦿
+# `scrapy` Unit Tests
 
 ## Description 🖼️
 
-This repository holds miscellaneous **quick and dirty scripts**.
+This repository holds (toy) **`pytest` unit tests for `scrapy`**, a Python library for scrapping and crawling websites. It was created for a course from Faculty of Automatic Control and Computers, University POLITEHNICA of Bucharest, namely "Cybersecurity Incidents Management".
 
-## Folders Structure 📁
+In total, there are **40 tests** that are passing with the frozen versions of libraries. All **64 asserts** have a **suggestive message**. Each test has a **timeout** attached: `0.1` seconds for offline tests and more for those that requires Internet connection (for example, those scrapping a website).
 
-Each folder contains the following components:
-- Some scripts
-- Requirements
-- Documentation
-- Usage examples.
+Each test method is accompanied by a short **documentation** explaining what it checks and what principles respects. These principles come from a pool made by combining **Right-BICEP** and **CORRECT**.
 
+<details>
+    <summary><b>Right-BICEP and CORRECT Principles</b></summary>
+    <ul>
+        <li>Are the returned results <strong>right</strong>?</li>
+        <li>Are the results at <strong>boundaries</strong> correct? The boundaries can be identified by following these aspects (CORRECT):
+            <ul>
+                <li><strong>Conformance</strong>: Compliance with a formal definition of the type</li>
+                <li><strong>Ordering</strong> (for example, of an ordered list)</li>
+                <li><strong>Range</strong></li>
+                <li><strong>References</strong> (to external objects or methods) </li>
+                <li><strong>Existence</strong> (of a method, parameter)</li>
+                <li><strong>Cardinality</strong>: Tests with 0, 1 and N elements</li>
+                <li><strong>Time</strong></li>
+            </ul>
+        </li>
+        <li>Check for <strong>inverse</strong> relationships, where the operations support it.</li>
+        <li><strong>Cross-check</strong> results using other means.</li>
+        <li>Force <strong>error</strong> condition to happen.</li>
+        <li>Are <strong>performance</strong> characteristics verified?</li>
+    </ul>
+</details>
 
+In addition, the source files were formatted with **Black** and **isort**, linted with **Flake8** (including the requirement of asserts to have a message) and type-checked with **MyPy**.
 
-- Timeout change for basic ops
-- Assert messages
-- Docs for each method
-- 64 asserts with sugestive messages
+# Setup 🔧
 
-# Principles
+1. Install [Poetry](https://python-poetry.org).
+2. Install the Python dependencies using Poetry: `poetry install`.
 
-## Right-BICEP
+# Usage 🧰
 
-- Are the returned results **right**?
-- Are the results at **boundaries** correct? The boundaries can be identified by following these aspects (CORRECT):
-    - Conformance: Compliance with a formal definition of the type
-    - Ordering (for example, of an ordered list)
-    - Range
-    - References (to external objects or methods) 
-    - Existence (of a method, parameter)
-    - Cardinality: Tests with 0, 1 and N elements
-    - Time
-- Check for **inverse** relationships, where the opeerations supports it.
-- **Cross-check** results using other means.
-- Force **error** condition to happen.
-- Are **performance** characteristics verified?
-
-## FIRST
-
-- Fast
-- Isolated
-- Repeatable
-- Self-validating
-- Timely
-
----
-
-- 40 tests that are passing
-each test has its own principles an techniques of unit testing
-- PYTHONPATH="tests/" .venv/bin/pytest tests/
+Just run `PYTHONPATH="tests" .venv/bin/pytest tests`.

@@ -294,7 +294,7 @@ testing = ["covdefaults (>=2.2.2)", "coverage (>=6.5)", "pytest (>=7.2)", "pytes
 name = "flake8"
 version = "6.0.0"
 description = "the modular source code checker: pep8 pyflakes and co"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.8.1"
 files = [
@@ -311,7 +311,7 @@ pyflakes = ">=3.0.0,<3.1.0"
 name = "flake8-assert-msg"
 version = "1.1.1"
 description = "flake8 plugin which forbids assert statements without messages"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -534,7 +534,7 @@ source = ["Cython (>=0.29.7)"]
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -724,7 +724,7 @@ pyasn1 = ">=0.4.6,<0.5.0"
 name = "pycodestyle"
 version = "2.10.0"
 description = "Python style guide checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -759,7 +759,7 @@ files = [
 name = "pyflakes"
 version = "3.0.1"
 description = "passive checker of Python programs"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -1147,4 +1147,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a9f84825ff0ad24dfe15f31f8617fc6842fa4be06234d9c7aaa0c7a400c7de59"
+content-hash = "5ecab530c820ff9f43c2a66b1d21fb244dcf48fb18b8667d0d62f32353f2d0bc"

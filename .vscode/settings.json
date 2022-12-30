@@ -15,7 +15,7 @@
     "python.linting.mypyEnabled": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.linting.mypyPath": ".venv/bin/mypy",
-    /* Isort */
+    /* isort */
     "isort.path": [
         ".venv/bin/isort"
     ],
