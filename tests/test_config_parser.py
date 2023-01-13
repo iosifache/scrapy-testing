@@ -78,7 +78,7 @@ def test_empty_file(
 
     Testing principles: right, cardinality of 0 elements, inverse relationship,
         performance
-    Testing technique: monkey patching
+    Testing technique: monkey patching with custom stub
     """
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
@@ -100,7 +100,7 @@ def test_valid_parsing_of_one_key(
 
     Testing principles: right, cardinality of one element, inverse
         relationship, performance
-    Testing technique: monkey patching
+    Testing technique: monkey patching with custom stub
     """
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
@@ -127,7 +127,7 @@ def test_valid_parsing_of_two_keys(
 
     Testing principles: right, cardinality of N elements, inverse relationship,
         performance
-    Testing technique: monkey patching
+    Testing technique: monkey patching with custom stub
     """
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
@@ -154,7 +154,7 @@ def test_no_file(
     """Tests if no error is raised when parsing an inexistent file.
 
     Testing principles: right, existence, inverse relationship, performance
-    Testing technique: monkey patching
+    Testing technique: monkey patching with custom stub
     """
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources", __mock_get_sources_with_empty_config
@@ -174,7 +174,7 @@ def test_file_with_errors(
     """Tests if an error is raised when parsing an invalid configuration.
 
     Testing principles: right, error, performance
-    Testing technique: monkey patching
+    Testing technique: monkey patching with custom stub
     """
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources", __mock_get_sources_with_erroneous_file
