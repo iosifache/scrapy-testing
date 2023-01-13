@@ -4,7 +4,7 @@
 
 This repository holds (toy) **`pytest` unit tests for `scrapy`**, a Python library for scrapping and crawling websites. It was created for a course from Faculty of Automatic Control and Computers, University POLITEHNICA of Bucharest, namely "Cybersecurity Incidents Management".
 
-In total, there are **40 tests** that are passing with the frozen versions of libraries. All **64 asserts** have a **suggestive message**. Each test has a **timeout** attached: `0.1` seconds for offline tests and more for those that requires Internet connection (for example, those scrapping a website).
+In total, there are **52 tests** that are passing with the frozen versions of libraries. All **78 asserts** have a **suggestive message**. Each test has a **timeout** attached: `0.1` seconds for offline tests and more for those that requires Internet connection (for example, those scrapping a website).
 
 Each test method is accompanied by a short **documentation** explaining what it checks and what principles respects. These principles come from a pool made by combining **Right-BICEP** and **CORRECT**.
 
@@ -29,6 +29,10 @@ Each test method is accompanied by a short **documentation** explaining what it 
         <li>Are <strong>performance</strong> characteristics verified?</li>
     </ul>
 </details>
+
+The tests are split into **test suites** by using `pytest`'s **marks** for the followings aspects:
+- Internet connection requirements: `online`, `offline`; and
+- High-level concept testing: `sitemap_testing`, `robotstxt_testing`, and `crawlers_testing`.
 
 In addition, the source files were formatted with **Black** and **isort**, linted with **Flake8** (including the requirement of asserts to have a message) and type-checked with **MyPy**.
 
