@@ -11,6 +11,7 @@ import pytest
 from scrapy.utils.url import _is_posix_path
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_file() -> None:
     """Tests if a valid path is recognized as valid.
@@ -22,6 +23,7 @@ def test_valid_file() -> None:
     ), "A valid folder is not recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_root() -> None:
     """Tests if the root folder is recognized as valid.
@@ -31,6 +33,7 @@ def test_root() -> None:
     assert _is_posix_path("/."), "The root folder is not recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_home() -> None:
     """Tests if the home folder is recognized as valid.
@@ -40,6 +43,7 @@ def test_home() -> None:
     assert _is_posix_path("~/."), "The home folder is not recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_working_directory() -> None:
     """Tests if the working folder is recognized as valid.
@@ -51,6 +55,7 @@ def test_working_directory() -> None:
     ), "The working folder is not recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_parent_directory() -> None:
     """Tests if the parent folder is recognized as valid.
@@ -62,6 +67,7 @@ def test_parent_directory() -> None:
     ), "The parent folder is not recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_windows_path() -> None:
     """Tests if a Windows path is recognized as invalid.
@@ -73,6 +79,7 @@ def test_windows_path() -> None:
     ), "A Windows path is recognized as valid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_null_path() -> None:
     """Tests if am empty path is recognized as invalid.

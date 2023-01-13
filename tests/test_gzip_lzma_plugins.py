@@ -45,6 +45,7 @@ def unlzma(filename: str) -> bytes:
     return lzma.open(filename).read()
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_gzip_valid_content() -> None:
     """Tests if the content is written correctly into the GZIP file.
@@ -63,6 +64,7 @@ def test_gzip_valid_content() -> None:
         ), "The written data for GZIP is different from the original one."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_lzma_valid_content() -> None:
     """Tests if the content is written correctly into the LZMA file.
@@ -81,6 +83,7 @@ def test_lzma_valid_content() -> None:
         ), "The written data for LZMA is different from the original one."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_gzip_zero_length() -> None:
     """Tests if length 0 is returned when passing an empty input to GZIP.
@@ -96,6 +99,7 @@ def test_gzip_zero_length() -> None:
         ), "GZIP size is non-0, despite the empty content."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_lzma_zero_length() -> None:
     """Tests if length 0 is returned when passing an empty input to LZMA.
@@ -111,6 +115,7 @@ def test_lzma_zero_length() -> None:
         ), "LZMA size is non-0, despite the empty content."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_gzip_inexistent_file() -> None:
     """Tests if an generic exception is raised when passing an inexistent file
@@ -128,6 +133,7 @@ def test_gzip_inexistent_file() -> None:
         ), "No exception was raised when processing an inexistent GZIP file."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_lzma_inexistent_file() -> None:
     """Tests if an generic exception is raised when passing an inexistent file

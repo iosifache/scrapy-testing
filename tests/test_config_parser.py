@@ -70,6 +70,7 @@ def __check_dumped_content(
     return is_identical
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_file(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
@@ -92,6 +93,7 @@ def test_empty_file(
     ), "The inexistent configuration was misrepresented."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_parsing_of_one_key(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
@@ -119,6 +121,7 @@ def test_valid_parsing_of_one_key(
     )
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_parsing_of_two_keys(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
@@ -147,6 +150,7 @@ def test_valid_parsing_of_two_keys(
     )
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_no_file(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
@@ -167,6 +171,7 @@ def test_no_file(
     ), "The empty configuration was misrepresented."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_file_with_errors(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch

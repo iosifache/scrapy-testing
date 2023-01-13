@@ -11,6 +11,7 @@ import pytest
 from scrapy.utils.response import get_base_url
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_without_base() -> None:
     """Tests if the base URL is returned correctly when no <base> in body.
@@ -30,6 +31,7 @@ def test_without_base() -> None:
     assert url == "https://google.com", "The returned base URL in invalid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_base() -> None:
     """Tests if the base URL is returned correctly when <base> in body.
@@ -51,6 +53,7 @@ def test_with_base() -> None:
     ), "The returned base URL, when specified in the body, is invalid."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_comments() -> None:
     """Tests if the base URL is returned correctly when <base> in commented.
@@ -74,6 +77,7 @@ def test_with_comments() -> None:
     ), "The comments were not correctly eliminated."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_content() -> None:
     """Tests if the base URL is returned correctly when empty body.
@@ -95,6 +99,7 @@ def test_with_empty_content() -> None:
     ), "The base URL is not returned correctly when the text is empty."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_url_and_body() -> None:
     """Tests if the base URL is returned correctly when empty body and URL.
@@ -116,6 +121,7 @@ def test_with_empty_url_and_body() -> None:
     ), "The base URL is not returned correctly when the URL is empty."
 
 
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_url_and_base_in_body() -> None:
     """Tests if the base URL is returned correctly when specified only in body.

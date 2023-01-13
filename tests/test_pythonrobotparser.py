@@ -18,6 +18,8 @@ Disallow:
 """
 
 
+@pytest.mark.robotstxt_testing
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_robots() -> None:
     """Tests if a valid file is parsed correctly.
@@ -35,6 +37,8 @@ def test_valid_robots() -> None:
     ), "YandexBot is allowed to crawl."
 
 
+@pytest.mark.robotstxt_testing
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_file() -> None:
     """Tests if no error is raised when giving an empty file.
@@ -52,6 +56,8 @@ def test_empty_file() -> None:
     ), "YandexBot is not allowed to crawl."
 
 
+@pytest.mark.robotstxt_testing
+@pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_no_robotstxt_at_all() -> None:
     """Tests if an error is raised when giving a None.

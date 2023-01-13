@@ -44,6 +44,8 @@ def __get_links(spider: typing.Type[ThreePagesScrapper]) -> list[Link]:
     return []
 
 
+@pytest.mark.crawlers_testing
+@pytest.mark.online
 @pytest.mark.timeout(3)
 def test_lazy_crawling() -> None:
     """Tests if the processing of three lazy websites does not result in a
