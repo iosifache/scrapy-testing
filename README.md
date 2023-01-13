@@ -43,4 +43,4 @@ In addition, the source files were formatted with **Black** and **isort**, linte
 
 # Usage 🧰
 
-Just run `PYTHONPATH="tests" .venv/bin/pytest tests`.
+Just run `PYTHONPATH="tests" .venv/bin/pytest tests`. To use only tests from a suite, add `-m <mark>` to the previous command.
