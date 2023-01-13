@@ -53,7 +53,7 @@ def test_empty_file() -> None:
 
 
 @pytest.mark.timeout(0.1)
-def test_no_DUMMY_ROBOTSTXT_at_all() -> None:
+def test_no_robotstxt_at_all() -> None:
     """Tests if an error is raised when giving a None.
 
     Testing principles: right, error, performance
