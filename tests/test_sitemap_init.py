@@ -72,59 +72,63 @@ def __check_root(root: typing.Any) -> bool:
     return isinstance(root, _Element)
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_0
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_urlset() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 0 elements, performance,
-        conformance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(EMPTY_URLSET_SITEMAP)
 
     assert sitemap.type == "urlset", "The sitemap's type is invalid."
     assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_1
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_single_url() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 1 element, performance,
-        conformance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(SITEMAP_WITH_ONE_LINK)
 
     assert sitemap.type == "urlset", "The sitemap's type is invalid."
     assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_n
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_many_urls() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality of N elements, performance,
-        conformance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(SITEMAP_WITH_MULTIPLE_LINK)
 
     assert sitemap.type == "urlset", "The sitemap's type is invalid."
     assert __check_root(sitemap._root), "The sitemap's root is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_parsing() -> None:
-    """Tests if an error is raised when giving an empty string.
-
-    Testing principles: right, error, performance
-    """
+    """Tests if an error is raised when giving an empty string."""
     try:
         Sitemap(EMPTY_STRING)
     except XMLSyntaxError:
@@ -133,14 +137,15 @@ def test_empty_parsing() -> None:
         assert False, "No error is raised when giving an empty string."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_invalid_parsing() -> None:
-    """Tests if no error is raised when passing an invalid XML string.
-
-    Testing principles: right, boundary, performance, conformance
-    """
+    """Tests if no error is raised when passing an invalid XML string."""
     sitemap = Sitemap(INVALID_CONTENT)
 
     assert sitemap.type == "urlset", "The sitemap's type is invalid."

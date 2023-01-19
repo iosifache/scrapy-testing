@@ -9,13 +9,13 @@ import pytest
 from scrapy.utils.url import strip_url
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_credentials() -> None:
-    """Tests if an URL containing credentials is stripped correctly.
-
-    Testing principles: right, performance
-    """
+    """Tests if an URL containing credentials is stripped correctly."""
     stripped = strip_url(
         "https://user:password@google.com", strip_credentials=True
     )
@@ -25,13 +25,13 @@ def test_strip_credentials() -> None:
     ), "The returned stripped URL with credentials is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_default_port() -> None:
-    """Tests if an URL containing the default port is stripped correctly.
-
-    Testing principles: right, performance
-    """
+    """Tests if an URL containing the default port is stripped correctly."""
     stripped = strip_url("https://google.com:443", strip_default_port=True)
 
     assert (
@@ -39,13 +39,13 @@ def test_strip_default_port() -> None:
     ), "The returned stripped URL with default port is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_origin() -> None:
-    """Tests if an URL containing a path is stripped correctly.
-
-    Testing principles: right, performance
-    """
+    """Tests if an URL containing a path is stripped correctly."""
     stripped = strip_url("https://google.com/search", origin_only=True)
 
     assert (
@@ -53,13 +53,13 @@ def test_strip_origin() -> None:
     ), "The returned stripped URL with path is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_fragment() -> None:
-    """Tests if an URL containing a fragment is stripped correctly.
-
-    Testing principles: right, performance
-    """
+    """Tests if an URL containing a fragment is stripped correctly."""
     stripped = strip_url(
         "https://google.com/search#result", strip_fragment=True
     )
@@ -69,13 +69,13 @@ def test_strip_fragment() -> None:
     ), "The returned stripped URL with fragment is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_all_features() -> None:
-    """Tests if an overly qualified URL is trimmed correctly.
-
-    Testing principles: right, performance
-    """
+    """Tests if an overly qualified URL is trimmed correctly."""
     stripped = strip_url(
         "https://user:password@google.com:443/search#result",
         strip_credentials=True,
@@ -89,13 +89,14 @@ def test_strip_all_features() -> None:
     ), "A fully quallified URL is not stripped correctly."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_range_lower
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_strip_empty_url() -> None:
-    """Tests if an empty URL don't generate any error when processed.
-
-    Testing principles: right, performance, range (with lower limit)
-    """
+    """Tests if an empty URL don't generate any error when processed."""
     stripped = strip_url(
         "",
         strip_credentials=True,

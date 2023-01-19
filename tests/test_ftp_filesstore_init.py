@@ -21,13 +21,14 @@ def constructor_wrapper(
     return FTPFilesStore(f"{schema}{username}:{password}@{hostname}:{port}")
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_inverse
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_parameters() -> None:
-    """Tests if no error is raised when passing a valid connection string.
-
-    Testing principles: right, performance, inverse relationship
-    """
+    """Tests if no error is raised when passing a valid connection string."""
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     client = constructor_wrapper(schema, username, password, hostname, port)
 
@@ -38,13 +39,14 @@ def test_valid_parameters() -> None:
     assert client.port == port, "The post is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_no_schema() -> None:
-    """Tests if an error is raised when no schema is provided.
-
-    Testing principles: right, error
-    """
+    """Tests if an error is raised when no schema is provided."""
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     schema = ""
 
@@ -56,13 +58,14 @@ def test_no_schema() -> None:
         assert False, "No error was raised when ommiting schema."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_range_lower
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_lowest_port() -> None:
-    """Tests if no error is raised when using the lowest port.
-
-    Testing principles: right, range (with lower limit)
-    """
+    """Tests if no error is raised when using the lowest port."""
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     port = 1
 
@@ -75,13 +78,14 @@ def test_lowest_port() -> None:
     assert client.port == port, "The post is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_negative_port() -> None:
-    """Tests if an error is raised on a negative value.
-
-    Testing principles: right, error
-    """
+    """Tests if an error is raised on a negative value."""
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     port = -1
 
@@ -95,13 +99,14 @@ def test_negative_port() -> None:
         ), "No error was raised when offering a negative value as port."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_above_max_port() -> None:
-    """Tests if an error is when using a port exceeding the maximum value.
-
-    Testing principles: right, error
-    """
+    """Tests if an error is when using a port exceeding the maximum value."""
     schema, username, password, hostname, port = VALID_CONNECTION_PARAMETERS
     port = 65536
 

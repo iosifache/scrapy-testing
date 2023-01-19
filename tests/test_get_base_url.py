@@ -11,14 +11,14 @@ import pytest
 from scrapy.utils.response import get_base_url
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_without_base() -> None:
-    """Tests if the base URL is returned correctly when no <base> in body.
-
-    Testing principles: right, performance
-    Testing technique: fake
-    """
+    """Tests if the base URL is returned correctly when no <base> in body."""
 
     class FakeResponseWithoutBase:
         text: str = "<b>Content</b>"
@@ -31,14 +31,14 @@ def test_without_base() -> None:
     assert url == "https://google.com", "The returned base URL in invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_base() -> None:
-    """Tests if the base URL is returned correctly when <base> in body.
-
-    Testing principles: right, performance
-    Testing technique: fake
-    """
+    """Tests if the base URL is returned correctly when <base> in body."""
 
     class FakeResponseWithBase:
         text: str = "<base href='https://www.canonical.com'/><b>Content</b>"
@@ -53,14 +53,14 @@ def test_with_base() -> None:
     ), "The returned base URL, when specified in the body, is invalid."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_comments() -> None:
-    """Tests if the base URL is returned correctly when <base> in commented.
-
-    Testing principles: right, performance
-    Testing technique: fake
-    """
+    """Tests if the base URL is returned correctly when <base> in commented."""
 
     class FakeResponseWithBase:
         text: str = (
@@ -77,14 +77,15 @@ def test_with_comments() -> None:
     ), "The comments were not correctly eliminated."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_range_lower
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_content() -> None:
-    """Tests if the base URL is returned correctly when empty body.
-
-    Testing principles: right, performance, range (with lower limit)
-    Testing technique: fake
-    """
+    """Tests if the base URL is returned correctly when empty body."""
 
     class FakeResponseWithBase:
         text: str = ""
@@ -99,14 +100,15 @@ def test_with_empty_content() -> None:
     ), "The base URL is not returned correctly when the text is empty."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_range_lower
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_url_and_body() -> None:
-    """Tests if the base URL is returned correctly when empty body and URL.
-
-    Testing principles: right, performance, range (with lower limit)
-    Testing technique: fake
-    """
+    """Tests if the base URL is returned correctly when empty body and URL."""
 
     class FakeResponseWithBase:
         text: str = ""
@@ -121,13 +123,15 @@ def test_with_empty_url_and_body() -> None:
     ), "The base URL is not returned correctly when the URL is empty."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_range_lower
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_fake
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_with_empty_url_and_base_in_body() -> None:
     """Tests if the base URL is returned correctly when specified only in body.
-
-    Testing principles: right, performance, range (with lower limit)
-    Testing technique: fake
     """
 
     class FakeResponseWithBase:

@@ -61,14 +61,15 @@ def __check_node(node: typing.Any) -> bool:
     return isinstance(node, dict) and "loc" in node.keys()
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_0
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_urlset() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 0 elements, performance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(EMPTY_URLSET_SITEMAP)
 
     nodes_count = 0
@@ -78,15 +79,15 @@ def test_empty_urlset() -> None:
     assert nodes_count == 0, "Nodes were returned despite the empty sitemap."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_1
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_single_url() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with 1 element, performance,
-        conformance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(SITEMAP_WITH_ONE_LINK)
 
     nodes_count = 0
@@ -98,15 +99,16 @@ def test_valid_sitemap_with_single_url() -> None:
     assert nodes_count == 1, "Invalid number of sitemap elements"
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_n
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
 @pytest.mark.sitemap_testing
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_sitemap_with_many_urls() -> None:
-    """Tests if a sitemap with multiple URLs is parsed correctly.
-
-    Testing principles: right, cardinality with N elements, performance,
-        conformance
-    """
+    """Tests if a sitemap with multiple URLs is parsed correctly."""
     sitemap = Sitemap(SITEMAP_WITH_MULTIPLE_LINK)
 
     nodes_count = 0

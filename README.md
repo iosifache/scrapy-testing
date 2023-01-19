@@ -31,7 +31,9 @@ Each test method is accompanied by a short **documentation** explaining what it 
 </details>
 
 The tests are split into **test suites** by using `pytest`'s **marks** for the followings aspects:
-- Internet connection requirements: `online`, `offline`; and
+- Internet connection requirements: `online`, `offline`;
+- Unit testing principles: `principle_*`;
+- Unit testing techniques: `technique_*`; and
 - High-level concept testing: `sitemap_testing`, `robotstxt_testing`, and `crawlers_testing`.
 
 In addition, the source files were formatted with **Black** and **isort**, linted with **Flake8** (including the requirement of asserts to have a message) and type-checked with **MyPy**.

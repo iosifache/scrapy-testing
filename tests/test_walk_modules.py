@@ -14,14 +14,16 @@ def __check_valid_module(module: typing.Any, parent_module: str) -> bool:
     return ismodule(module) and module.__name__.startswith(parent_module)
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_0
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
+@pytest.mark.principle_inverse
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_zero_submodules() -> None:
-    """Tests if a module containing no submodule is correctly walked.
-
-    Testing principles: right, cardinality with 0 elements, performance,
-        conformance, inverse relationship
-    """
+    """Tests if a module containing no submodule is correctly walked."""
     modules = walk_modules("modules.zero")
 
     assert (
@@ -29,14 +31,16 @@ def test_zero_submodules() -> None:
     ), "The lack of submodules was not correctly reported."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_1
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
+@pytest.mark.principle_inverse
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_one_submodule() -> None:
-    """Tests if a module containing one submodule is correctly walked.
-
-    Testing principles: right, cardinality with 1 element, performance,
-        conformance, inverse relationship
-    """
+    """Tests if a module containing one submodule is correctly walked."""
     target_module = "modules.one"
     modules = walk_modules(target_module)
 
@@ -46,14 +50,16 @@ def test_one_submodule() -> None:
     ), "The returned submodule is not a correct sub-module."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_n
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.principle_conformance
+@pytest.mark.principle_inverse
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_multiple_submodules() -> None:
-    """Tests if a module containing one submodule is correctly walked.
-
-    Testing principles: right, cardinality with N elements, performance,
-        conformance, inverse relationship
-    """
+    """Tests if a module containing one submodule is correctly walked."""
     target_module = "modules.two"
     modules = walk_modules(target_module)
 
@@ -64,13 +70,14 @@ def test_multiple_submodules() -> None:
         ), "A returned object is not a correct sub-module."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_invalid_module() -> None:
-    """Tests if an error is raised when walking an invalid module.
-
-    Testing principles: right, error, performance
-    """
+    """Tests if an error is raised when walking an invalid module."""
     try:
         walk_modules("doublethink")
     except ModuleNotFoundError:
@@ -79,13 +86,14 @@ def test_invalid_module() -> None:
         assert False, "No error was raised when walking an invalid module."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_local_module() -> None:
-    """Tests if an error is raised when walking a local module.
-
-    Testing principles: right, error, performance
-    """
+    """Tests if an error is raised when walking a local module."""
     try:
         walk_modules(".crimethought")
     except TypeError:

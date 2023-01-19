@@ -70,17 +70,18 @@ def __check_dumped_content(
     return is_identical
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_0
+@pytest.mark.principle_inverse
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_monkey
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_empty_file(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tests if a valid configuration with two keys is loaded correctly.
-
-    Testing principles: right, cardinality of 0 elements, inverse relationship,
-        performance
-    Testing technique: monkey patching with custom stub
-    """
+    """Tests if a valid configuration with two keys is loaded correctly."""
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
         __mock_get_sources_with_inexistent_config,
@@ -93,17 +94,18 @@ def test_empty_file(
     ), "The inexistent configuration was misrepresented."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_1
+@pytest.mark.principle_inverse
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_monkey
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_parsing_of_one_key(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tests if a valid configuration with one key is loaded correctly.
-
-    Testing principles: right, cardinality of one element, inverse
-        relationship, performance
-    Testing technique: monkey patching with custom stub
-    """
+    """Tests if a valid configuration with one key is loaded correctly."""
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
         __mock_get_sources_with_valid_one_key_config,
@@ -121,17 +123,18 @@ def test_valid_parsing_of_one_key(
     )
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_cardinality_n
+@pytest.mark.principle_inverse
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_monkey
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_valid_parsing_of_two_keys(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tests if a valid configuration with two keys is loaded correctly.
-
-    Testing principles: right, cardinality of N elements, inverse relationship,
-        performance
-    Testing technique: monkey patching with custom stub
-    """
+    """Tests if a valid configuration with two keys is loaded correctly."""
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources",
         __mock_get_sources_with_valid_two_keys_config,
@@ -150,16 +153,18 @@ def test_valid_parsing_of_two_keys(
     )
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_existence
+@pytest.mark.principle_inverse
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_monkey
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_no_file(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tests if no error is raised when parsing an inexistent file.
-
-    Testing principles: right, existence, inverse relationship, performance
-    Testing technique: monkey patching with custom stub
-    """
+    """Tests if no error is raised when parsing an inexistent file."""
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources", __mock_get_sources_with_empty_config
     )
@@ -171,16 +176,17 @@ def test_no_file(
     ), "The empty configuration was misrepresented."
 
 
+@pytest.mark.principle_right
+@pytest.mark.principle_error
+@pytest.mark.principle_time
+@pytest.mark.principle_performance
+@pytest.mark.technique_monkey
 @pytest.mark.offline
 @pytest.mark.timeout(0.1)
 def test_file_with_errors(
     capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Tests if an error is raised when parsing an invalid configuration.
-
-    Testing principles: right, error, performance
-    Testing technique: monkey patching with custom stub
-    """
+    """Tests if an error is raised when parsing an invalid configuration."""
     monkeypatch.setattr(
         "scrapy.utils.conf.get_sources", __mock_get_sources_with_erroneous_file
     )
