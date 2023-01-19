@@ -4,13 +4,13 @@
 
 This repository holds (toy) **`pytest` unit tests for `scrapy`**, a Python library for scrapping and crawling websites. It was created for a course from Faculty of Automatic Control and Computers, University POLITEHNICA of Bucharest, namely "Cybersecurity Incidents Management".
 
-### Overview 🦅
+### Overview
 
 In total, there are **52 tests** that are passing with the frozen versions of libraries. All **78 asserts** have a **suggestive message**. Each test has a short **documentation** explaining what it checks, and a **timeout** attached: `0.1` seconds for offline tests and more for those that requires Internet connection (for example, those scrapping a website).
 
 In addition, the source files were formatted with **Black** and **isort**, linted with **Flake8** (including the requirement of asserts to have a message) and type-checked with **MyPy**.
 
-### Test Suites 🗃️
+### Test Suites
 
 The tests are split into **test suites** by using `pytest`'s **marks** for the followings aspects:
 - Internet connection requirements: `online`, `offline`;
@@ -65,11 +65,15 @@ The marks distribution (generated with `analysis/marks_analysis.py`) is listed i
 | `technique_fake`          | 6     |
 | `technique_monkey`        | 5     |
 
-# Setup 🔧
+## Setup 🔧
 
 1. Install [Poetry](https://python-poetry.org).
 2. Install the Python dependencies using Poetry: `poetry install`.
 
-# Usage 🧰
+## Usage 🧰
 
 Just run `PYTHONPATH="tests" .venv/bin/pytest tests`. To use only tests from a suite, add `-m <mark>` to the previous command.
+
+## Resources 📚
+
+The used resources are only the libraries specified in Poetry's `pyproject.toml` file.
