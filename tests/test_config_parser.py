@@ -176,7 +176,6 @@ def test_no_file(
     ), "The empty configuration was misrepresented."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance

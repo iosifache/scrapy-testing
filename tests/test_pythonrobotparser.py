@@ -58,7 +58,6 @@ def test_empty_file() -> None:
 
 
 @pytest.mark.principle_right
-@pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
 @pytest.mark.robotstxt_testing

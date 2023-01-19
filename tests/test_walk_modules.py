@@ -70,7 +70,6 @@ def test_multiple_submodules() -> None:
         ), "A returned object is not a correct sub-module."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
@@ -86,7 +85,6 @@ def test_invalid_module() -> None:
         assert False, "No error was raised when walking an invalid module."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance

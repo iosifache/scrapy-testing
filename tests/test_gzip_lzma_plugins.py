@@ -119,7 +119,6 @@ def test_lzma_zero_length() -> None:
         ), "LZMA size is non-0, despite the empty content."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_existence
 @pytest.mark.principle_error
 @pytest.mark.principle_time
@@ -142,7 +141,6 @@ def test_gzip_inexistent_file() -> None:
 
 @pytest.mark.principle_right
 @pytest.mark.principle_existence
-@pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
 @pytest.mark.offline

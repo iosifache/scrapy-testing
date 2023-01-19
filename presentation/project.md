@@ -51,12 +51,12 @@ section table{
 | `principle_cardinality_1` | 4     |
 | `principle_cardinality_n` | 4     |
 | `principle_conformance`   | 9     |
-| `principle_error`         | 10    |
+| `principle_error`         | 7     |
 | `principle_existence`     | 4     |
 | `principle_inverse`       | 10    |
 | `principle_performance`   | 52    |
 | `principle_range_lower`   | 12    |
-| `principle_right`         | 52    |
+| `principle_right`         | 46    |
 | `principle_time`          | 52    |
 | `robotstxt_testing`       | 3     |
 | `sitemap_testing`         | 8     |

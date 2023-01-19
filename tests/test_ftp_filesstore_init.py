@@ -39,7 +39,6 @@ def test_valid_parameters() -> None:
     assert client.port == port, "The post is invalid."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
@@ -79,7 +78,6 @@ def test_lowest_port() -> None:
 
 
 @pytest.mark.principle_right
-@pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
 @pytest.mark.offline
@@ -99,7 +97,6 @@ def test_negative_port() -> None:
         ), "No error was raised when offering a negative value as port."
 
 
-@pytest.mark.principle_right
 @pytest.mark.principle_error
 @pytest.mark.principle_time
 @pytest.mark.principle_performance
